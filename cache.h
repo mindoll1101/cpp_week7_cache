@@ -13,7 +13,6 @@ private:
   private:
     std::string key_;
     std::string type_;
-    int hash_size_;
     int integer_val_;
     double double_val_;
     Node *prev_;
@@ -27,30 +26,31 @@ private:
     Node *getNext(){return next_;};
     Node *getPrev(){return prev_;};
     Node *getHashNext(){return hash_next_;};
+    Node *getHashPrev(){return hash_prev_;};
 
     std::string getKey(){return key_;};
     std::string doubleToStringInCache();
     std::string getType(){return type_;};
     int getInt(){return integer_val_;};
-    int getHashSize(){return hash_size_;};
-    void setHashSize();
     double getDouble(){return double_val_;};
 
     void setNext(Node *node);
     void setHashNext(Node *node);
   };
 
-  Node *nodes;
+  Node *nodes_;
+  Node *tail_;
   Node *hash_[CACHE_SIZE];
+  Node *hash_tail_[CACHE_SIZE];
   int cur_size_;
   int max_size_;
 
-  std::hash<std::string> hash_str;
   std::string result_;
   std::string type_int_;
   std::string type_double_;
   int hash_num_;
-
+  void del();
+  int hash_str(std::string key);
 public:
   Cache();
   ~Cache();

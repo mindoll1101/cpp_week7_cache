@@ -17,12 +17,12 @@ double CachedRunner::multiply(std::string filename){
   key_ = "multiply(" + filename + ")";
   if(!(cache_ -> get(key_, double_val_))){
     double_val_ = TaskRunner::multiply(filename);
-    cache_ -> add(key_, double_val_);
     misses_++;
   }
   else{
     hits_++;
   }
+  cache_ -> add(key_, double_val_);
   return double_val_;
 }
 
@@ -31,12 +31,12 @@ int CachedRunner::palindrome(std::string filename){
   key_ = "palindrome(" + filename + ")";
   if(!(cache_ -> get(key_, integer_val_))){
     integer_val_ = TaskRunner::palindrome(filename);
-    cache_ -> add(key_, integer_val_);
     misses_++;
   }
   else{
     hits_++;
   }
+  cache_ -> add(key_, integer_val_);
   return integer_val_;
 }
 
