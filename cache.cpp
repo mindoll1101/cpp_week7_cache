@@ -14,12 +14,17 @@ Cache::Cache(){
   type_double_ = "double";
   for(int i = 0; i < CACHE_SIZE; i++){
     hash_[i] = NULL;
-    hash_tail_[i] = NULL;
   }
 }
 
 Cache::~Cache(){
-  delete nodes_;
+  Node *cur = nodes_;
+  Node *tmp = nodes_;
+  while(cur != NULL){
+    cur = cur -> getNext();
+    delete nodes_;
+    nodes_ = cur;
+  }
 }
 
 Cache::Node::Node(std::string key, void *value, std::string type):key_(key), prev_(NULL), next_(NULL), hash_prev_(NULL), hash_next_(NULL){

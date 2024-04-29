@@ -41,7 +41,6 @@ private:
   Node *nodes_;
   Node *tail_;
   Node *hash_[CACHE_SIZE];
-  Node *hash_tail_[CACHE_SIZE];
   int cur_size_;
   int max_size_;
 
